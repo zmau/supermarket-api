@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "4ed69894-4ee4-4f68-947c-b05e1af60d30",
+		"name": "supermarket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get products (public)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1FTTVSVEl3TURBMU9UWTBORU16TXpjNU5FVTVSall6UTBFME5rRXpNVU0yTURrNU5UVkJPQSJ9.eyJpc3MiOiJodHRwczovL2Rldi0wN2htcjJwcy5hdXRoMC5jb20vIiwic3ViIjoiUjZRN2J4VjBDcGFDUWRhTHRteEpLZVh6ZU9RWXN1MHpAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcXVpY2tzdGFydHMvYXBpIiwiaWF0IjoxNTc1OTIxNzMyLCJleHAiOjE1NzYwMDgxMzIsImF6cCI6IlI2UTdieFYwQ3BhQ1FkYUx0bXhKS2VYemVPUVlzdTB6IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.klftsdcv-VACIhSKmXaaxBoOekc1hpWH1B3QUHQ2QeSStMW8f5ithtpxWWL5Q38U_Ww1kd0fDsMR-alBVOHpycBwTlZOFayNX1bIAyAcIjuuC62jnasQ0_Vq60q5Y-LS7hUvK02HGe_41BQ-Iy3j5RBIuxq4bf1RmcwMGExdecLRZXHjeGhNmJ1CFwVijeEr__iZ7FCwzCq7GV3b8J4eugfdQ4qwQsgrCwuox7virrz7EDkYIW_saySBOtUc2wSwRPrAmwW6zZS4BHCPm_3dABZWcavjLvAzFuYR693g4yEdGlm33FCuNcBaPr_g7dg2vt8cG_ryDetIHX42wq8O4g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_id\": \"T3vFdFy3BFiGKyFSB6G03ZMNwL6S8iI6\",\n    \"client_secret\": \"I_c7e9znXEnkZ4LXpIFCAC_g0fDThuBsPEO_YPBVunu5nkkMjNg6f7mGAcERjHYy\",\n    \"audience\": \"zmau_api\",\n    \"grant_type\": \"client_credentials\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "?Content-Type=application/json",
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get categories (private)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1FTTVSVEl3TURBMU9UWTBORU16TXpjNU5FVTVSall6UTBFME5rRXpNVU0yTURrNU5UVkJPQSJ9.eyJpc3MiOiJodHRwczovL2Rldi0wN2htcjJwcy5hdXRoMC5jb20vIiwic3ViIjoiVDN2RmRGeTNCRmlHS3lGU0I2RzAzWk1Od0w2UzhpSTZAY2xpZW50cyIsImF1ZCI6InptYXVfYXBpIiwiaWF0IjoxNTc1OTg0MzcyLCJleHAiOjE1NzYwNzA3NzIsImF6cCI6IlQzdkZkRnkzQkZpR0t5RlNCNkcwM1pNTndMNlM4aUk2IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.OV9SQI-IvUCn-WzkgSNZ2R0SJelNjAncHIkKHnbZyprVI9z78uV-53CZLS19i9l7WLz-1uCAPpfnz3iscc0HKkH2m3n2mW3YBrrFWOD5r-FpQtgn-EBB4drx0RsFj447RVD0Q8r1JIsgTEojobSukoMBMSHbO1vVCddg0qSTw6n6fYl1r6BoD7C9aKp5EGK_IvIYb7cgY95wns6onjMc34YQtnd7oSlMfhajw-POEgr1holsOt5lpPHnEdCEDKa4XvtJYB4vqqY1EcwX67Rh0l9nKZsLtJ66Vr8jCk-gtvGXcF_i7lGoDhZmjDKoOAk8ZROcV6P8Ydax_u9maMKCuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/categories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bakery\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/categories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

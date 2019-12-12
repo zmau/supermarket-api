@@ -2,6 +2,8 @@
 using System.IO;
 using System.Reflection;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +32,20 @@ namespace Supermarket.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
+
+            /* Auth0 related ******************************/
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-07hmr2ps.auth0.com/";
+                options.Audience = Configuration["Auth0:ApiIdentifier"];
+            });
+
+            string domain = $"https://{Configuration["Auth0:Domain"]}/";
+            /* ********************************************/
 
             services.AddSwaggerGen(cfg =>
             {
@@ -79,6 +95,16 @@ namespace Supermarket.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            /* Auth0 related ******************************/
+            app.UseAuthentication();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                  name: "default",
+                  template: "{controller=Home}/{action=Index}/{id?}");
+            });            
+            /* ********************************************/
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

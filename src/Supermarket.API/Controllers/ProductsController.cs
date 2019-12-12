@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Models.Queries;
@@ -36,6 +37,16 @@ namespace Supermarket.API.Controllers
 
             var resource = _mapper.Map<QueryResult<Product>, QueryResultResource<ProductResource>>(queryResult);
             return resource;
+        }
+
+        [HttpGet("private")]
+        [Authorize]
+        public IActionResult Private()
+        {
+            return Ok(new
+            {
+                Message = "Hello from a private endpoint! You need to be authenticated to see this."
+            });
         }
 
         /// <summary>

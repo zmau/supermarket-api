@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Services;
@@ -27,6 +28,7 @@ namespace Supermarket.API.Controllers
         /// </summary>
         /// <returns>List os categories.</returns>
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(typeof(IEnumerable<CategoryResource>), 200)]
         public async Task<IEnumerable<CategoryResource>> ListAsync()
         {
