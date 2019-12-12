@@ -40,11 +40,10 @@ namespace Supermarket.API
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = "https://dev-07hmr2ps.auth0.com/";
+                options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
                 options.Audience = Configuration["Auth0:ApiIdentifier"];
             });
 
-            string domain = $"https://{Configuration["Auth0:Domain"]}/";
             /* ********************************************/
 
             services.AddSwaggerGen(cfg =>
@@ -95,15 +94,14 @@ namespace Supermarket.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            /* Auth0 related ******************************/
             app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                   name: "default",
                   template: "{controller=Home}/{action=Index}/{id?}");
             });            
-            /* ********************************************/
 
             if (env.IsDevelopment())
             {
